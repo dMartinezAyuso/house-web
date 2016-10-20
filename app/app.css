@@ -39,3 +39,7 @@
     width: 100%;
 }
 
+.jumbotron {
+  background: url('/images/nice-house.jpg') no-repeat center center;
+  background-size: cover;
+}
