@@ -31,7 +31,9 @@ gulp.task('connect', function () {
 });
 
 gulp.task('browserify', function() {
-    return browserify(['app/app.js', 'app/views/home/home.js'])
+    return browserify([
+		'app/app.js',
+		'app/views/home/home.module.js'])
 		/*.pipe(plumber({
 			errorHandler: onError
 		}))*/
@@ -78,8 +80,8 @@ gulp.task('watch', function() {
     gulp.watch(paths.htmlFiles, ['html']);
 });
 
-gulp.task('build', ['browserify', 'sass', 'html']);
+gulp.task('build', ['sass', 'html']);
 
 gulp.task('default', ['build', 'connect', 'watch']);
 
-gulp.task('deploy',[]);
+gulp.task('deploy',['browserify']);
