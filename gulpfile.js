@@ -10,8 +10,12 @@ var beep            = require('beepbeep');
 var livereload      = require('gulp-livereload');
 
 var paths = {
-	jsFiles : ['./app/views/**/*.js', './app/components/**/*.js', './app/app.js'],
-	distJs : 'app/dist/js/'
+	jsFiles : ['app/views/**/*.js', 'app/components/**/*.js', 'app/app.js'],
+	jsDist : 'app/dist/js',
+	jsCompressed : 'main.js',
+  	scssFiles : ['app/app.scss', 'app/views/home/home.scss'],
+	cssDist : 'app/dist/css',
+	htmlFiles : ['app/**/*.html']
 };
 
 var onError = function (err) {
@@ -26,17 +30,18 @@ gulp.task('connect', function () {
 	})
 });
 
-/*gulp.task('browserify', function() {
-	// Grabs the app.js file
-    return browserify(['./app/app.js','./app/home/home.js'])
-    	// bundles it and creates a file called main.js
+gulp.task('browserify', function() {
+    return browserify(['app/app.js', 'app/views/home/home.js'])
+		/*.pipe(plumber({
+			errorHandler: onError
+		}))*/
         .bundle()
-        .pipe(source('main.js'))
-        // saves it the public/js/ directory
-        .pipe(gulp.dest('./app/dist/js/'));
-});*/
+        .pipe(source(paths.jsCompressed))
+        .pipe(gulp.dest(paths.jsDist))
+		.pipe(livereload());
+});
 
-gulp.task('uglifyjs', function() {
+/*gulp.task('uglifyjs', function() {
 	return gulp.src(paths.jsFiles)
 	.pipe(plumber({
 		errorHandler: onError
@@ -46,34 +51,35 @@ gulp.task('uglifyjs', function() {
 	}))
 	.pipe(gulp.dest(paths.distJs))
 	.pipe(livereload());
-});
+});*/
 
 gulp.task('sass', function() {
-    return sass(['app/app.scss', 'app/home/home.scss'], {
+    return sass(['app/app.scss', 'app/views/home/home.scss'], {
         style: 'compressed',
 		cacheLocation: './cache/.sass-cache'
-    })
+	})
     .pipe(plumber({
 		errorHandler: onError
 	}))
-    .pipe(gulp.dest('app/dist/css'))
+    .pipe(gulp.dest(paths.cssDist))
     .pipe(livereload());
 });
 
 gulp.task('html', function() {
-	return gulp.src([
-		'app/**/*.html'
-	])
-	.pipe(livereload());
+	return gulp.src(paths.htmlFiles)
+		.pipe(livereload());
 });
 
 gulp.task('watch', function() {
     livereload.listen();
-	gulp.watch('app/**/*.js', ['uglifyjs']);
-    gulp.watch('app/**/*.scss', ['sass']);
-    gulp.watch('app/**/*.html', ['html']);
+	gulp.watch(paths.jsFiles, ['browserify']);
+	//gulp.watch(paths.jsFiles, ['uglifyjs']);
+    gulp.watch(paths.scssFiles, ['sass']);
+    gulp.watch(paths.htmlFiles, ['html']);
 });
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('build', ['browserify', 'sass', 'html']);
+
+gulp.task('default', ['build', 'connect', 'watch']);
 
 gulp.task('deploy',[]);
