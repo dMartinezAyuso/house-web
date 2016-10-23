@@ -8,6 +8,14 @@
 
         var vm = this;
 
+        vm.addEvent = addEvent;
+        vm.eventClicked = eventClicked;
+        vm.eventEdited = eventEdited;
+        vm.eventDeleted = eventDeleted;
+        vm.eventTimesChanged = eventTimesChanged;
+        vm.toggle = toggle;
+        vm.timespanClicked = timespanClicked;
+
         vm.garden = "Jardineria";
         vm.calendarView = 'month';
         vm.viewDate = new Date();
@@ -57,14 +65,6 @@
         ];
 
         vm.cellIsOpen = true;
-
-        vm.addEvent = addEvent;
-        vm.eventClicked = eventClicked;
-        vm.eventEdited = eventEdited;
-        vm.eventDeleted = eventDeleted;
-        vm.eventTimesChanged = eventTimesChanged;
-        vm.toggle = toggle;
-        vm.timespanClicked = timespanClicked;
 
         function addEvent() {
             vm.events.push({

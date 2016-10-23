@@ -8,7 +8,8 @@
         'ngAnimate',
         'mwl.calendar',
         'ui.bootstrap',
-        'myApp.home'
+        'myApp.home',
+        'myApp.menuCompo'
     ])
 
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

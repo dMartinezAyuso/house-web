@@ -13,7 +13,7 @@ var paths = {
 	jsFiles : ['app/views/**/*.js', 'app/components/**/*.js', 'app/app.js'],
 	jsDist : 'app/dist/js',
 	jsCompressed : 'main.js',
-  	scssFiles : ['app/app.scss', 'app/views/home/home.scss'],
+  	scssFiles : ['app/app.scss', 'app/views/home/home.scss', 'app/components/menu/menu.component.scss'],
 	cssDist : 'app/dist/css',
 	htmlFiles : ['app/**/*.html']
 };
@@ -56,7 +56,7 @@ gulp.task('browserify', function() {
 });*/
 
 gulp.task('sass', function() {
-    return sass(['app/app.scss', 'app/views/home/home.scss'], {
+    return sass(['app/app.scss', 'app/views/home/home.scss', 'app/components/menu/menu.component.scss'], {
         style: 'compressed',
 		cacheLocation: './cache/.sass-cache'
 	})
