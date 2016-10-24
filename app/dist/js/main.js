@@ -2,7 +2,6 @@
 (function() {
     'use strict';
 
-    // Declare app level module which depends on views, and components
     angular.module('myApp', [
         'ngRoute',
         'ngTouch',
@@ -19,7 +18,6 @@
     }])
 
     .config(function(calendarConfig) {
-
         console.log(calendarConfig); //view all available config
 
         //calendarConfig.templates.calendarMonthView = 'path/to/custom/template.html'; //change the month view template globally to a custom template
@@ -36,7 +34,7 @@
 
         //calendarConfig.showTimesOnWeekView = true; //Make the week view more like the day view, with the caveat that event end times are ignored.
 
-      });
+    });
 })();
 
 },{}],2:[function(require,module,exports){

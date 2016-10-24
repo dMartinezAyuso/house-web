@@ -3,16 +3,19 @@
     max-height: 100px;
 }
 
-
-.thumbnail h3 {
-    text-align: center;
-}
-
-.thumbnail .btn {
-    width: 100%;
+.thumbnail{
+    h3 {
+        text-align: center;
+    }
+    .btn {
+        width: 100%;
+    }
 }
 
 .jumbotron {
-  background: url('/images/nice-house.jpg') no-repeat center center;
-  background-size: cover;
+    background: url('/images/nice-house.jpg') no-repeat center center;
+    background-size: cover;
+    h1 {
+        color: $white;
+    }
 }

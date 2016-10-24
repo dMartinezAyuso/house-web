@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('myApp.home')
-        .controller('HomeCtrl', HomeCtrl);
+        .controller('homeCtrl', homeCtrl);
 
-    function HomeCtrl(calendarConfig) {
+    function homeCtrl(calendarConfig, homeFactory) {
 
         var vm = this;
 
@@ -16,7 +16,8 @@
         vm.toggle = toggle;
         vm.timespanClicked = timespanClicked;
 
-        vm.garden = "Jardineria";
+        vm.thumbnailsItems = homeFactory.getThumbnailsItems();
+
         vm.calendarView = 'month';
         vm.viewDate = new Date();
         var actions = [
