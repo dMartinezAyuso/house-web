@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-    angular.module('myApp.menuCompo')
-        .component('MenuCompo', MenuCompo);
+    angular.module('myApp.menuCompo',[])
+        .component('menuCompo', menuCompo());
 
-    function MenuCompo() {
+    function menuCompo() {
         var component = {
-            templateUrl : 'menu.component.html',
+            templateUrl : 'components/menu/menu.component.html',
             controller : MenuCompoController,
             controllerAs : 'vm'
         };
@@ -15,6 +15,7 @@
 
         function MenuCompoController() {
             var vm = this;
+
             vm.items = {
                 home : {
                     name : 'Inicio',
@@ -36,16 +37,18 @@
                     name : 'Cuentas',
                     route : '#!/financings'
                 }
-            }
+            };
+
+            vm.openMenu = openMenu;
 
             function openMenu() {
-                var x = document.getElementById("menuTopnav");
+                var x = document.getElementById("menuTopNav");
                 if (x.className === "topnav") {
                     x.className += " responsive";
                 } else {
                     x.className = "topnav";
                 }
-            }
+            };            
         }
     }
 
